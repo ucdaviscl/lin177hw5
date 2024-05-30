@@ -31,13 +31,18 @@ class ucfg:
         self.parser.parse(s, n)
 
     def generate(self, n=100, depth=7):
+        gen = {}
         print("Generating at most", n, "sentences with depth limit", depth, ":")
         print()
         cnt = 0
-        for s in generate(self.g, n=n*100, depth=depth):
+        for s in generate(self.g, n=n*1000, depth=depth):
             t = list(self.parser.p.parse(s))
             if len(t) == 0:
                 continue
+            sentence = ' '.join(s)
+            if sentence in gen:
+                continue
+            gen[sentence] = 1
             cnt += 1
             print(' '.join(s))
             if cnt == n:
