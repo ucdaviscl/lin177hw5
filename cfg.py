@@ -2,7 +2,7 @@ from nltk import grammar, CFG, PCFG
 from nltk.parse import pchart, BottomUpChartParser, FeatureChartParser
 from nltk.parse.generate import generate
 import nltk
-import pcfg
+import pcfg as pcfgra
 
 class cfg:
     def __init__(self, instr):
@@ -116,7 +116,7 @@ class ucfg_parser:
 class generator:
     gen = None
     def __init__(self, g):
-        self.gen = pcfg.PCFG.fromstring(g)
+        self.gen = pcfgra.PCFG.fromstring(g)
     
     def generate(self, n=1):
         for s in self.gen.generate(n):
